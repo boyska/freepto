@@ -3,7 +3,7 @@
 function out_selfextract() {
 	echo '#!/usr/bin/env bash'
 	cat pre.sh
-	add_tar src.tar.xz /tmp/asd
+	add_tar files.tar.gz /
 	cat post.sh
 }
 
