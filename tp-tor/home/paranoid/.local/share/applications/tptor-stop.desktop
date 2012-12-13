@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TP-Tor Stop
+Comment=Redirige tutto il traffico del pc a TOR in maniera trasparente
+Icon=apport
+Exec=/usr/local/bin/tptor-stop.sh
+Path=
+Terminal=true
+StartupNotify=false

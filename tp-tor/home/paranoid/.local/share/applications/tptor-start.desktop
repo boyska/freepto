@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TP-Tor Start
+Comment=Redirige tutto il traffico del pc a TOR in maniera trasparente
+Icon=apport
+Exec=/usr/local/bin/tptor-start.sh
+Path=
+Terminal=true
+StartupNotify=false
