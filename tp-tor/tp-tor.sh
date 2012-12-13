@@ -8,18 +8,16 @@ user=`id -un`
 
 # Change DNS server
 sudo cp /etc/resolv.conf /root/rsocks/backup/resolv.conf.backup
-sudo echo "nameserver 127.0.0.1" > /etc/resolv.conf
+echo "nameserver 127.0.0.1" | sudo tee -a /etc/resolv.conf
 
 # Iptables backup
 sudo iptables-save > /root/rsocks/backup/iptables.backup
 
 # Add TransparentProxy rules on Tor config
-sudo cat <<EOF >> /etc/tor/torrc
-VirtualAddrNetwork 10.192.0.0/10
-AutomapHostsOnResolve 1
-TransPort 9040
-DNSPort 53
-EOF
+echo "VirtualAddrNetwork 10.192.0.0/10" | sudo tee -a /etc/tor/torrc
+echo "AutomapHostsOnResolve 1" | sudo tee -a /etc/tor/torrc
+echo "TransPort 9040" | sudo tee -a /etc/tor/torrc
+echo "DNSPort 53" | sudo tee -a /etc/tor/torrc
 
 # Restart TOR
 sudo /etc/init.d/tor restart
@@ -29,9 +27,6 @@ sudo iptables -F
 sudo iptables -X
 sudo iptables -t nat -F
 sudo iptables -t nat -X
-
-# Block ICMP
-sudo iptables -A OUTPUT -p icmp -j REJECT
 
 # Redirec all DNS traffic trought TOR
 sudo iptables -t nat -A OUTPUT -p udp -m owner --uid-owner $user -m udp --dport 53 -j REDIRECT --to-ports 53
