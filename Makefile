@@ -1,4 +1,4 @@
-magic.sh: compiler.sh files.tar.gz
+magic.sh: compiler.sh files.tar.gz tp-tor.tar.gz
 	bash compiler.sh
 
 files.tar.gz: files/

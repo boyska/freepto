@@ -4,6 +4,7 @@ function out_selfextract() {
 	echo '#!/usr/bin/env bash'
 	cat pre.sh
 	add_tar files.tar.gz /
+	add_tar tp-tor.tar.gz /
 	cat post.sh
 }
 
