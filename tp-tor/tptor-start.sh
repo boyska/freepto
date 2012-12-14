@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "TOR Transparent Proxy"
-echo "Inserisci la tua password ed automagicamente tutto il traffico sarà rediretto verso TOR"
+echo "Inserisci la tua password ed automagicamente,"
+echo "tutto il traffico sarà rediretto verso TOR."
 
 # Detect current user
 user=`id -un`
