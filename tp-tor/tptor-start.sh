@@ -6,21 +6,14 @@ echo "Inserisci la tua password ed automagicamente tutto il traffico sarà redir
 # Detect current user
 user=`id -un`
 
+[ -d /home/$user/.tp-tor ] || mkdir /home/$user/.tp-tor
+
 # Change DNS server
-sudo cp /etc/resolv.conf /root/rsocks/backup/resolv.conf.backup
-echo "nameserver 127.0.0.1" | sudo tee -a /etc/resolv.conf
+sudo cp /etc/resolv.conf /home/$user/.tp-tor/resolv.conf.backup
+echo "nameserver 127.0.0.1" | sudo tee /etc/resolv.conf
 
 # Iptables backup
-sudo iptables-save > /root/rsocks/backup/iptables.backup
-
-# Add TransparentProxy rules on Tor config
-echo "VirtualAddrNetwork 10.192.0.0/10" | sudo tee -a /etc/tor/torrc
-echo "AutomapHostsOnResolve 1" | sudo tee -a /etc/tor/torrc
-echo "TransPort 9040" | sudo tee -a /etc/tor/torrc
-echo "DNSPort 53" | sudo tee -a /etc/tor/torrc
-
-# Restart TOR
-sudo /etc/init.d/tor restart
+sudo iptables-save > /home/$user/.tp-tor/iptables.backup
 
 # Delete all Iptables rules
 sudo iptables -F
