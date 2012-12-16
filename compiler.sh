@@ -3,9 +3,13 @@
 function out_selfextract() {
 	echo '#!/usr/bin/env bash'
 	cat pre.sh
-	add_tar files.tar.gz /
-	add_tar tp-tor.tar.gz /
+	add_tarball files.tar.gz /
+	add_tarball tp-tor.tar.gz /
 	cat post.sh
+}
+
+function add_tarball() {
+	echo "tar -C$2 -xaf $1"
 }
 
 function add_tar() {
